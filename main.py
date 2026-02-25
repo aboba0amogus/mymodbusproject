@@ -1,14 +1,29 @@
 from pymodbus.client import ModbusSerialClient
 print("start main.py")
 
-client = ModbusSerialClient(
-    port="/dev/ttyUSB0",
-    baudrate=9600,
-    bytesize=8,
-    parity='E',
-    stopbits=2,
-    name="mymodbusproject")
 
-response = client.read_holding_registers(address=36864,count=1,device_id=10)
-print(response)
 
+print ("пробуем перебрать все значения")
+baudrates = [9600,19200,4800,1200,2400,38400,57600]
+parityes = ['E','O','N']
+stopbits = [1,1.5,2]
+
+for device_id in range(248):
+    for baudrate in baudrates:
+        for parity in parityes:
+            for stopbit in stopbits:
+                try:
+                    client = ModbusSerialClient(
+                    port="/dev/ttyUSB0",
+                    baudrate=baudrate,
+                    bytesize=8,
+                    parity=parity,
+                    stopbits=stopbit,
+                    name="mymodbusproject")
+                    response  = client.read_holding_registers(address=0x9000,count=1,device_id=device_id)
+                    print(response)
+                    print("YES!")
+                except Exception as e:
+                    print("NOT")
+                    print(e)
+print("команда закончена")
