@@ -1,8 +1,6 @@
 from pymodbus.client import ModbusSerialClient
 print("start main.py")
 
-
-
 print ("пробуем перебрать все значения")
 baudrates = [9600,19200,4800,1200,2400,38400,57600]
 parityes = ['E','O','N']
@@ -26,4 +24,6 @@ for device_id in range(248):
                 except Exception as e:
                     print("NOT")
                     print(e)
+                finally:
+                    client.close()
 print("команда закончена")
