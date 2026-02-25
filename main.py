@@ -10,6 +10,7 @@ for device_id in range(248):
     for baudrate in baudrates:
         for parity in parityes:
             for stopbit in stopbits:
+                print(f"значения    baudrate:{baudrate}    parity:{parity}    stopbit:{stopbit}    id:{device_id}")
                 try:
                     client = ModbusSerialClient(
                     port="/dev/ttyUSB0",
