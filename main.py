@@ -5,8 +5,10 @@ print ("пробуем перебрать все значения")
 baudrates = [9600,19200,4800,1200,2400,38400,57600]
 parityes = ['E','O','N']
 stopbits = [1,1.5,2]
+device_ids = [10,0,1,2,3,4,5,6,7,8,9]
+device_ids = device_ids + list(range(11,248))
 
-for device_id in range(248):
+for device_id in device_ids:
     for baudrate in baudrates:
         for parity in parityes:
             for stopbit in stopbits:
